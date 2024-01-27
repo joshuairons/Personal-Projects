@@ -1,35 +1,51 @@
-def add(x, y):
+#defining arithmetic functions
+def add(x,y):
     return x + y
-
-def subtract(x, y):
+def subtract(x,y):
     return x - y
-    
-def multiply(x, y):
+def multiply(x,y):
     return x * y
-
 def divide(x, y):
-    if y != 0:
+    if y != 0:                                              #Conditional statement, division by 0 is not possible
         return x / y
     else:
-        print("Cannot divide by 0, please try again.")
-        return None
-
-choice = int(input("Enter choice between 1 and 4 here: "))
-
-while choice < 1 or choice > 4:
-    choice=int(input("Choice can only be from 1 to 4, please try again."))
-else:
-    x = int(input("Enter first number here: "))
-    y = int(input("Enter second number here: "))
+        print("Cannot divide by 0, please try again.")      #error handling, division by 0 is not possible
+        return None                                         #division by 0 will not yield a result
     
-    if choice == 1:
-        result = add(x, y)
-    elif choice == 2:
-        result = divide(x, y)
-    elif choice == 3:
-        result = subtract(x, y)
-    elif choice == 4:
-        result = multiply(x, y)
-
-    if result is not None:
-        print("Result:", result)
+    
+#making a menu for users to select from    
+def menu():
+    while True:                                             #loop to restart the menu until exited 
+        print("1. Add")
+        print("2. Subtract")
+        print("3. Divide")                                  #print statements for the users to select from
+        print("4. Multiply")
+        print("5. Exit")
+        
+        choice = int(input("Enter choice from 1 to 5 here. "))   #declaring choice as an input that only accepts integers
+        if choice < 1 or choice > 5:                                #conditional statement, choice can only be from 1 to 5
+            print("Choice invalid, please try again")
+            continue                                                #calls on the menu again if the choice isnt from 1 to 5
+        elif choice == 5:                                          
+            print("Exiting....")
+            break                                                   #terminates the program if option 5 is selected
+      
+        x = int(input("Enter first number here: "))                 #declaring x, y as the first and second numbers that only accept integers
+        y = int(input("Enter second number here: "))
+        
+        if choice == 1:                                             #branches to return values of the option selected
+            result = add(x, y)  
+        elif choice == 2:
+            result = subtract(x,y)
+        elif choice == 3:
+            result = divide(x, y)
+        elif choice == 4:
+            result = multiply(x, y)
+        
+        
+        if result is not None:                                      #program only yields an output if there is a value to return
+            print("Result: ", result)
+            
+menu()                                                              #calls upon the menu until program is terminated
+            
+            
